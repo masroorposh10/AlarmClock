@@ -1,0 +1,33 @@
+import datetime
+import time
+import os
+from tkinter import Tk, Label, Entry, Button
+
+def set_alarm():
+    alarm_time = entry.get()
+    while True:
+        current_time = datetime.datetime.now().strftime("%H:%M:%S")
+        if current_time == alarm_time:
+            label.config(text="Wake up!")
+            # Play sound
+            os.system("afplay sound.wav")
+            break
+        time.sleep(1)
+
+# Create the Tkinter window
+root = Tk()
+root.title("Alarm Clock")
+
+# Create the label and entry for alarm time
+label = Label(root, text="Enter the alarm time in HH:MM format:")
+label.pack()
+
+entry = Entry(root)
+entry.pack()
+
+# Create the button to set the alarm
+button = Button(root, text="Set Alarm", command=set_alarm)
+button.pack()
+
+# Start the Tkinter event loop
+root.mainloop()
